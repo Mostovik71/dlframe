@@ -1,0 +1,19 @@
+preparing:
+  data: "../data/Ethos_Dataset_Binary.csv"
+  target_col: "isHate"
+  text_col: "comment"
+  max_features: 2000
+training:
+  train_data_path: "train_data.pkl"
+  model_name: "model"
+  hyperparams:
+        {max_depth: "hp.choice('max_depth', np.arange(4, 12, 2, dtype=int))",
+         learning_rate: "hp.loguniform('learning_rate', np.log(0.01), np.log(0.5))",
+         feature_fraction": "hp.uniform('feature_fraction', 0.5, 1)",
+         num_leaves": "hp.choice('num_leaves', np.arange(16, 256, 2, dtype=int))"}
+  num_folds: 3
+  max_evals: 5
+evaluating:
+  model_path: "model.pkl"
+  model_tuned_path: "model_tuned.pkl"
+  test_data_path: "test_data.pkl"
