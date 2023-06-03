@@ -11,6 +11,7 @@ params = yaml.safe_load(open('params.yaml'))['training']
 train_data_path = params.get('train_data_path', 'train_data.pkl')
 model_name = params.get('model_name', 'model.pkl')
 hyperparams = params.get('hyperparams', None)
+logs_folder = params.get('logs_path', None)
 with open(train_data_path, 'rb') as fd:
     matrix = pickle.load(fd)
 
@@ -20,7 +21,7 @@ x_train = matrix[:, 1:]
 clf = LGBMClassifier(random_state=42)
 clf.fit(x_train, y_train)
 
-with open(model_name + '.pkl', "wb") as fd:
+with open(logs_folder + model_name + '.pkl', "wb") as fd:
     pickle.dump(clf, fd)
 
 space = {k: eval(v) for k, v in hyperparams.items()}
@@ -44,11 +45,11 @@ best = fmin(objective, space,
             max_evals=max_evals)
 
 best_params = space_eval(space, best)
-with open('best_params.json', 'w') as fp:
+with open(logs_folder + 'best_params.json', 'w') as fp:
     json.dump(best_params, fp)
 
 clf_tuned = LGBMClassifier(**best_params)
 clf_tuned.fit(x_train, y_train)
 
-with open(model_name + '_tuned' + '.pkl', "wb") as fd:
+with open(logs_folder + model_name + '_tuned' + '.pkl', "wb") as fd:
     pickle.dump(clf_tuned, fd)

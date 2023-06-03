@@ -4,6 +4,7 @@ preparing:
   text_col: "comment"
   max_features: 2000
 training:
+  logs_path: "logs/"
   train_data_path: "train_data.pkl"
   model_name: "model"
   hyperparams:
