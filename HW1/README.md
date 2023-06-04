@@ -18,7 +18,8 @@
 После преобразования датасет разбивается на train и test часть с размерами 0.7 и 0.3 от исходного соответственно.
 
 ## Model Selection
-В качестве feature - extractor'а был выбран TfidfVectorizer из библиотеки sklearn со следующими основными параметрами: ngram_range=(1, 2), max_features=2000.
+В качестве feature - extractor'а был выбран TfidfVectorizer из библиотеки sklearn со следующими основными параметрами: ngram_range = (1, 2), 
+max_features = 2000.
 
 В качестве основной модели был выбран LGBMClassifier из библиотеки lightgbm с параметром random_state = 42.
 
