@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from loguru import logger
 
-
+logger.info('PREPARING MODULE')
 params = yaml.safe_load(open('params.yaml'))['preparing']
 params_train = yaml.safe_load(open('params.yaml'))['training']
 

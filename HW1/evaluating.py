@@ -6,6 +6,7 @@ import pandas as pd
 from loguru import logger
 from sklearn.metrics import roc_auc_score, precision_score, recall_score, f1_score
 
+logger.info('EVALUATING MODULE')
 params = yaml.safe_load(open('params.yaml'))['evaluating']
 params_train = yaml.safe_load(open('params.yaml'))['training']
 
