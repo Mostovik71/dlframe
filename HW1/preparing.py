@@ -6,8 +6,10 @@ from sklearn.model_selection import train_test_split
 import scipy.sparse as sparse
 
 params = yaml.safe_load(open('params.yaml'))['preparing']
+params_train = yaml.safe_load(open('params.yaml'))['training']
 
 data_path = params.get('data', None)
+logs_path = params_train.get('logs_path', None)
 
 df = pd.read_csv(data_path, on_bad_lines='skip', sep=';')
 target_col = params.get('target_col', 'isHate')
@@ -40,6 +42,6 @@ def save_matrix(df, matrix, output):
         pickle.dump((result), fd)
 
 
-save_matrix(df_train, X_train, './train_data.pkl')
-save_matrix(df_test, X_test, './test_data.pkl')
+save_matrix(df_train, X_train, logs_path + 'train_data.pkl')
+save_matrix(df_test, X_test, logs_path + 'test_data.pkl')
 
