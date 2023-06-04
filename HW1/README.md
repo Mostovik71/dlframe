@@ -20,7 +20,7 @@
 ## Model Selection
 В качестве feature - extractor'а был выбран TfidfVectorizer из библиотеки sklearn со следующими основными параметрами: ngram_range=(1, 2), max_features=2000.
 
-В качестве основной модели был выбран LGBMClassifier из библиотеки lightgbm.
+В качестве основной модели был выбран LGBMClassifier из библиотеки lightgbm с параметром random_state = 42.
 
 ## Hyperparameter Optimization
 В качестве библиотеки для оптимизации гиперпараметров была выбрана HyperOpt. Параметры для метода fmin и оптимизируемой функции: max_evals = 5, algo = tpe.suggest, cv = 3, metric = 1 - roc_auc.
