@@ -9,16 +9,19 @@
 ## Dataset
 Датасет содержит 998 комментариев с разной степенью токсичности. 
 Изначально в колонке isHate есть значения между 0 и 1, которые были преобразованы в 0 или 1 по принципу больше или меньше это значение чем 0.5.
+
 ![image](https://github.com/Mostovik71/dlframe/assets/56130198/0a50af5b-3643-4ae0-a8bf-e8d8c085418d)
 
 После преобразования датасет разбивается на train и test часть с размерами 0.7 и 0.3 от исходного соответственно.
 
 ## Model Selection
 В качестве feature - extractor'а был выбран TfidfVectorizer из библиотеки sklearn со следующими основными параметрами: ngram_range=(1, 2), max_features=2000.
+
 В качестве основной модели был выбран LGBMClassifier из библиотеки lightgbm.
 
 ## Hyperparameter Optimization
 В качестве библиотеки для оптимизации гиперпараметров была выбрана HyperOpt. Параметры для метода fmin и оптимизируемой функции: max_evals = 5, algo = tpe.suggest, cv = 3, metric = 1 - roc_auc.
+
 Поле для поиска гиперпараметров: 
 
 "max_depth": hp.choice('max_depth', np.arange(4, 12, 2, dtype=int)) - глубина дерева
